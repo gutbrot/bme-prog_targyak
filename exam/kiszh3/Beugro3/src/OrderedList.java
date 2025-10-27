@@ -19,7 +19,9 @@ public class OrderedList<T extends Comparable<T>> {
     public T pop() {
         if (list.isEmpty())
             return null;
-        return list.removeLast();
+        T result = Collections.min(list, comp);
+        list.remove(result);
+        return result;
     }
 
     @Override
