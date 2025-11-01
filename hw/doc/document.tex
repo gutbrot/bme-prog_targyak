@@ -1,4 +1,96 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} % ha pdflatex
+\usepackage[T1]{fontenc}
+\usepackage[magyar]{babel}
+\usepackage{titlesec} % szakaszcímek szabása
+\usepackage{lmodern}  % szebb alap betű
+\setcounter{secnumdepth}{0}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+% Dokumentumcím (fejléc "cím")
+\title{\bfseries\Large Házi feladat specifikáció}
+\author{Gutbrod Ádámr}
+\date{\today}
+
+% H1 = \section
+\titleformat{\section} % forma: [parancs]{format}{label}{sep}{before-code}[after-code]
+{\bfseries\Large}    % betűstílus és méret
+{\thesection}        % számozás megjelenítése
+{0.75em}             % távolság a sorszám és szöveg között
+{}                   % bevezető kód (pl. dísz, ikon)
+\titlespacing*{\section}{0pt}{1.5ex plus .2ex}{0.8ex}
+
+% H2 = \subsection
+\titleformat{\subsection}
+{\bfseries\large\itshape}
+{\thesubsection}
+{0.6em}
+{}
+\titlespacing*{\subsection}{0pt}{1.2ex plus .2ex}{0.6ex}
+
+% H3 = \subsubsection
+\titleformat{\subsubsection}
+{\bfseries\normalsize}
+{\thesubsubsection}
+{0.6em}
+{}
+\titlespacing*{\subsubsection}{0pt}{1ex plus .2ex}{0.5ex}
+
 \begin{document}
-	Specifikáció
+	\maketitle
+	
+	\section{Feladat ismertetése}
+	A program célja egy RPG (role-playing game / szerepjáték) megvalósítása. \
+	
+	\subsection{A játékmenet rövid ismertetése}
+	A játékosnak át kell navigálni karakterét egy zegzugos kazamatán, hogy legyőzhesse a főellenfelet. 
+	Útja során különböző szörnyekkel kell megküzdenie tapasztalati pontokért, hogy fejlődhessen, illetve tárgyakat (potion) találhasson, amik segítik a harcokban. \\
+	A játékos előre definiált karaktertípusokból választhat, amik megadják kezdő attribútumait (élet, mana stb.). Bizonyos számú tapasztalati pont gyűjtése után szintet léphet, ekkor lehetősége van attribútumait növelni. Bizonyos attribútumok növelése lehetővé teszi, hogy új képességek birtokába kerülhessen a játékos, melyek nagy segítséget fognak jelenteni a játék folyamán. \\
+	A játék vezérlése nagyrészt a képernyő megfelelő helyére való kattintással történik.
+	
+	
+	\section{Use-case-ek}
+	\subsection{Játék indítása}
+	\begin{itemize}
+		\item START gomb $\rightarrow$ új játék indítása
+		\item EXIT gomb $\rightarrow$ program, illetve alkalmazás bezárása
+	\end{itemize}
+	
+	\subsection{Karakter választó}
+	\begin{itemize}
+		\item NAME szövegdoboz $\rightarrow$ név megadása billentyűzetről
+		\item CLASS-ok $\rightarrow$ kezdő típus kiválasztása
+	\end{itemize}
+	
+	\subsection{Játéktér}
+	\begin{itemize}
+		\item MOVE \{DIRECTION\} (nyíl ikonok) $\rightarrow$ mozgás a táblán (amennyiben lehetséges)
+		\item ABILITIES (képesség kiválasztása) $\rightarrow$ amennyiben harcra kerülne sor különböző támadások közül választhatunk a körünkben
+		\item INVENTORY (eszköztár) $\rightarrow$ pl.: gyógyító bájital kiválasztása 
+	\end{itemize}
+	
+	\subsection{Eredmény}
+	\begin{itemize}
+		\item OK $\rightarrow$ eredmények elfogadása után, visszatérünk a menübe
+	\end{itemize}
+	
+	\section{Megoldási ötlet}
+	A program Swing GUI-t használva fogja a megjelenítését különböző ablakokban megvalósítani, a vezérlés kattintható gombokkal, illetve szöveg bevitelei mezőkkel fog megvalósulni. Továbbá az egység tesztelés JUnit támogatással fog történni.
+	\subsection{Ablakok}
+	\subsubsection{Főmenü}
+	A program indítását követően egy ablak jelenik meg, amelyből a játék lesz elindítható, valamint ki lehet lépni ja játékból egy EXIT gombbal.
+	
+	\subsubsection{Karakter választó}
+	A játék indítását követően megnyílik egy új ablak, amiben felhasználó megadhatja a karaktere nevét, illetve kiválaszthatja a karaktere típusát (Knight, Rogue, Mage stb.).\\
+	A név egy szövegdobozban kerül megadásra, míg a karaktertípust kattintással lehet kiválasztani a megjelenített opciók közül.
+	
+	\subsubsection{Játéktér}
+	A játéktérben látható lesz a térkép valamilyen négyzetrácsos (grid) megjelenítésben. Mellette látható lesz a játékos attribútumai, akciói, valamint egy log, amiben a játékos, illetve az ellenfelek akcióit követhetjük nyomon (ki kire mekkora sebzést mért stb.). A játékot a különböző akciógombokra kattintva vezérelhetjük.
+	
+	\subsubsection{Eredmény}
+	Végül attól függően, hogy a játékos meghalt vagy legyőzte a főellenfelét egy új ablak tájékoztat minket sikerünkről vagy bukásunkról. Ezt követően visszakerülünk a főmenübe.
+	
+	\subsection{Pálya beolvasása}
+	A pályák előre definiálva lesznek egy XML fájlban, a beolvasás a játék elindítását követően történik.
+	
 \end{document}
