@@ -12,7 +12,7 @@ public class Stack_new<T> {
     }
     public void push(T t){
         if(stack.size() == this.max){
-            stack.remove(stack.getFirst()); // stack.get(0) is jó
+            stack.remove(0);
         }
         stack.add(t);
     }
@@ -20,6 +20,6 @@ public class Stack_new<T> {
         if(stack.isEmpty()){  // stack.size() == 0
             throw new EmptyStackException();
         }
-        return this.stack.removeLast();
+        return this.stack.remove(stack.size()-1);
     }
 }

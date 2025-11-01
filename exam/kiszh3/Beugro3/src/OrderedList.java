@@ -13,7 +13,6 @@ public class OrderedList<T extends Comparable<T>> {
 
     public void push(T t) {
         list.add(t);
-        Collections.sort(list, comp);
     }
 
     public T pop() {
@@ -22,10 +21,5 @@ public class OrderedList<T extends Comparable<T>> {
         T result = Collections.min(list, comp);
         list.remove(result);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return list.toString();
     }
 }
