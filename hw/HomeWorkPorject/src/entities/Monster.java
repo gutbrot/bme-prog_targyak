@@ -1,4 +1,6 @@
-public class Monster extends Entity{
+package entities;
+
+public class Monster extends Entity {
     int loot;
     int xpReward;
     public Monster(String name, int xPosition, int yPosition) {

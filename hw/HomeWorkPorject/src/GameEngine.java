@@ -1,3 +1,5 @@
+import entities.Entity;
+
 public class GameEngine {
     static int mapWidth = 8;
     static int mapHeight = 8;
