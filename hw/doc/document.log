@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.16)  1 NOV 2025 16:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.16)  5 NOV 2025 22:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -211,11 +211,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count269
 \l__pdf_internal_box=\box54
 )
-(document.aux
-
-LaTeX Warning: Label `fig:abra1' multiply defined.
-
-)
+(document.aux)
 \openout1 = `document.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -347,23 +343,19 @@ Package pdftex.def Info: windows.jpg  used on input line 101.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 5176 strings out of 474486
- 89012 string characters out of 5753570
+ 5175 strings out of 474486
+ 89001 string characters out of 5753570
  1932542 words of memory out of 5000000
- 27384 multiletter control sequences out of 15000+600000
+ 27383 multiletter control sequences out of 15000+600000
  606621 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,441b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <D:/Program Files/MikTex/fonts/type1/public/lm/lmbx12.pfb><D:/Program Files/M
 ikTex/fonts/type1/public/lm/lmbxi10.pfb><D:/Program Files/MikTex/fonts/type1/pu
 blic/lm/lmr12.pfb><D:/Program Files/MikTex/fonts/type1/public/lm/lmsy10.pfb>
-Output written on document.pdf (2 pages, 153848 bytes).
+Output written on document.pdf (2 pages, 153849 bytes).
 PDF statistics:
  39 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
