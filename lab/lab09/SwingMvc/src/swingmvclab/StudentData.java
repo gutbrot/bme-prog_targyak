@@ -74,7 +74,12 @@ public class StudentData extends AbstractTableModel {
             default:
                 break;
         }
-
         fireTableCellUpdated(row, col);
+    }
+
+    public void addStudent(String name, String neptun) {
+        Student temp = new Student(name,neptun,false,0);
+        students.add(temp);
+        fireTableRowsUpdated(0,this.getRowCount());
     }
 }
