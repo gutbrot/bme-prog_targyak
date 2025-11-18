@@ -1,7 +1,13 @@
 import abilities.Ability;
 import abilities.DependencyGraph;
 import entities.Entity;
+import gui.GameCanvas;
+import gui.GameFrame;
+import gui.MenuFrame;
+import loader.World;
+import loader.XmlMapLoader;
 
+import javax.swing.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,26 +15,25 @@ public class GameEngine {
     static int mapWidth = 8;
     static int mapHeight = 8;
 
-    public static void main(String[] args) {
-        World world = new World(mapWidth, mapHeight);
-        Entity john = new Entity("John", 0, 0);
-        for (int x = 0; x < mapWidth; x++) {
-            for (int y = 0; y < mapHeight; y++) {
-                Entity tile = new Entity("Tile", x, y);
-            }
-        }
-        Ability slash = new Ability("1", "Slash", "Basic melee attack", 0);
-        Ability parry = new Ability("2", "Parry", "Defensive stance", 50);
-        Ability whirlwind = new Ability("3", "Whirlwind", "Attack all enemies", 100);
+    public static void main(String[] args) throws Exception {
+//        loader.ClassLoader.World world = new loader.ClassLoader.World(mapWidth, mapHeight);
+//        Entity john = new Entity("John", 0, 0);
+//        for (int x = 0; x < mapWidth; x++) {
+//            for (int y = 0; y < mapHeight; y++) {
+//                Entity tile = new Entity("loader.Tile", x, y);
+//            }
+//        }
+        World world = XmlMapLoader.load("res/map.xml");
+        GameFrame g = new GameFrame(world);
 
-        DependencyGraph graph = new DependencyGraph();
-        graph.addDependency(slash, parry);
-        graph.addDependency(parry, whirlwind);
 
-        Set<Ability> unlocked = new HashSet<>();
-        unlocked.add(slash); // Kezdetben csak Slash elérhető
+//      UI test
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                MenuFrame frame = new MenuFrame();
+//            }
+//        });
 
-        System.out.println("Unlockable: ");
-        graph.getUnlockable(unlocked).forEach(a -> System.out.println(a.getName()));
     }
 }
