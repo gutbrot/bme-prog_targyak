@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import entities.Entity;
 import loader.*;
 
 public class GameCanvas extends Canvas {
@@ -16,7 +17,7 @@ public class GameCanvas extends Canvas {
         // Coloring
         for(int r = 0; r < map.rows; r++) {
             for (int c = 0; c < map.cols; c++) {
-                Tile t = map.tiles[r][c];
+                Tile t = map.getTiles()[r][c];
 
             }
         }
@@ -34,7 +35,7 @@ public class GameCanvas extends Canvas {
 
         for (int r = 0; r < map.rows; r++){
             for (int c = 0; c < map.cols; c++){
-                Tile t = map.tiles[r][c];
+                Tile t = map.getTiles()[r][c];
 
                 Color color = switch (t.getType()) {
                     case 0 -> Color.LIGHT_GRAY;   // floor
@@ -45,6 +46,11 @@ public class GameCanvas extends Canvas {
 
                 g.setColor(color);
                 g.fillRect(t.x, t.y, t.width, t.height);
+
+                if(t.entityCount() > 0){
+                   g.setColor(Color.GREEN);
+                   g.drawString("X",t.x,t.y);
+                }
 
                 if (t.selected) {
                     g.setColor(Color.YELLOW);
@@ -57,7 +63,7 @@ public class GameCanvas extends Canvas {
     private void handleClick(int mouseX, int mouseY) {
         for(int r=0; r<map.rows; r++){
             for(int c=0; c<map.cols; c++){
-                Tile t = map.tiles[r][c];
+                Tile t = map.getTiles()[r][c];
 
                 boolean inside =
                         mouseX >= t.x && mouseX < t.x + t.width &&

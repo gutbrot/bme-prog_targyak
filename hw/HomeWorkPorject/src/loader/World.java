@@ -2,12 +2,11 @@ package loader;
 
 import entities.Entity;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class World {
-    public Tile[][] tiles;
+    private Tile[][] tiles;
     public int rows;
     public int cols;
 
@@ -21,8 +20,9 @@ public class World {
     public void addEntity(Entity e){
         int x = e.getX();
         int y = e.getY();
-        tiles[y][x].addEntity(e);
+        tiles[x][y].addEntity(e);
     }
+
     public void setTileType(int x, int y, int type){
         tiles[x][y].setType(type);
     }

@@ -32,4 +32,10 @@ public class Tile {
     public void removeEntity(Entity e){
         entities.remove(e);
     }
+    public int entityCount(){
+        return entities.size();
+    }
+    public List<Entity> getEntities(){
+        return entities;
+    }
 }

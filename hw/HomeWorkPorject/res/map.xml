@@ -1,7 +1,13 @@
 <map rows="5" cols="5">
+
     <row> 0 0 1 1 2 </row>
     <row> 0 1 1 2 2 </row>
     <row> 0 1 0 2 2 </row>
     <row> 1 1 0 0 0 </row>
     <row> 2 2 2 0 0 </row>
+
+    <enemies>
+        <enemy type="goblin" x="2" y="1" />
+        <enemy type="orc"    x="4" y="3" />
+    </enemies>
 </map>

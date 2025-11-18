@@ -15,6 +15,9 @@ public class Entity {
         this.xPos = xPosition;
         this.yPos = yPosition;
     }
+    public String getName(){
+        return name;
+    }
     public int getX(){
         return xPos;
     }
