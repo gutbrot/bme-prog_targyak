@@ -8,4 +8,7 @@ public class Character extends Entity {
     public Character(String name, int xPosition, int yPosition) {
         super(name, xPosition, yPosition);
     }
+    public void setName(String name){
+        this.name = name;
+    }
 }

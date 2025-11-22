@@ -24,4 +24,5 @@ public class Entity {
     public int getY(){
         return yPos;
     }
+    public void setPos(int nx, int ny){ xPos=nx; yPos=ny; }
 }
