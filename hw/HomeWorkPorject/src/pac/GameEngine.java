@@ -1,15 +1,28 @@
 package pac;
+import javax.swing.*;
+import java.util.concurrent.CountDownLatch;
 
 public class GameEngine {
-    static Character player = new Character("",0,0);
+
+    static Character player = new Character("", 0, 0);
 
     public static void main(String[] args) throws Exception {
 
-        MenuFrame menu = new MenuFrame(player);
+        CountDownLatch latch = new CountDownLatch(1);
+        ModelHolder holder = new ModelHolder();
 
-        Model model = XmlMapLoader.loadAll("res/map.xml");
+        SwingUtilities.invokeLater(() -> {
+            new MenuFrame(player, holder, latch);
+        });
 
-        GameFrame g = new GameFrame(model.map);
+        latch.await();
+
+        SwingUtilities.invokeLater(() -> {
+            new GameFrame(holder.model.map);
+        });
     }
 
+    static class ModelHolder {
+        public Model model;
+    }
 }

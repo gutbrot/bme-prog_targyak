@@ -4,40 +4,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
 
-public class MenuFrame extends JFrame{
-    private JComboBox<String> box;
+import static pac.XmlMapLoader.loadAll;
+
+public class MenuFrame extends JFrame {
+
+    private final JComboBox<String> box;
     private final JTextField nameField = new JTextField(20);
-    World world;
+    private final JButton startButton = new JButton("Play!");
+
     private final Character player;
-    public MenuFrame(Character player){
+    private final GameEngine.ModelHolder holder;
+    private final CountDownLatch latch;
+
+    public MenuFrame(Character player, GameEngine.ModelHolder holder, CountDownLatch latch) {
         this.player = player;
-        // JBox init
-        // TODO cast laod from files
+        this.holder = holder;
+        this.latch = latch;
+
         String[] casts = {"Warrior", "Mage", "Monk"};
         box = new JComboBox<>(casts);
 
-        // Frame init
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dungeon Crawler Java Remake");
         setSize(400, 110);
         setResizable(false);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
-
-        // Panel
         JPanel panel = new JPanel();
         panel.add(box);
         panel.add(nameField);
-        JButton startButton = new JButton("Play!");
         panel.add(startButton);
+        add(panel, BorderLayout.CENTER);
 
-        // Start Button
         startButton.addActionListener(new StartButtonActionListener());
-
-        add(panel,BorderLayout.CENTER);
 
         setVisible(true);
     }
@@ -45,7 +47,6 @@ public class MenuFrame extends JFrame{
     class StartButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
             String name = nameField.getText().trim();
             String cast = (String) box.getSelectedItem();
 
@@ -58,15 +59,23 @@ public class MenuFrame extends JFrame{
             }
 
             player.setName(name);
+            try {
+                // itt töltjük be az XML-t
+                holder.model = loadAll("res/data.xml");
 
-            // Játék indítása
-            SwingUtilities.invokeLater(() -> {
-                new GameFrame(world);    // <-- átadjuk
-            });
+                // jelezzük a main szálnak, hogy mehet tovább
+                latch.countDown();
 
-            // Menü bezárása
-            dispose();
+                // menü bezárása
+                dispose();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(MenuFrame.this,
+                        "Error loading game data: " + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-
 }
