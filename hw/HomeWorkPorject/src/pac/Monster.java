@@ -1,4 +1,4 @@
-package entities;
+package pac;
 
 public class Monster extends Entity {
     int loot;

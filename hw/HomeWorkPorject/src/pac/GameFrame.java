@@ -1,7 +1,4 @@
-package gui;
-
-import loader.World;
-import loader.XmlMapLoader;
+package pac;
 
 import javax.swing.*;
 import java.awt.*;

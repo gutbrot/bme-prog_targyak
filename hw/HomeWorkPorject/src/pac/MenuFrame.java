@@ -1,17 +1,16 @@
-package gui;
+package pac;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import loader.World;
-import entities.Character;
+
 public class MenuFrame extends JFrame{
     private JComboBox<String> box;
     private final JTextField nameField = new JTextField(20);
     World world;
     private final Character player;
-    public MenuFrame(entities.Character player){
+    public MenuFrame(Character player){
         this.player = player;
         // JBox init
         // TODO cast laod from files

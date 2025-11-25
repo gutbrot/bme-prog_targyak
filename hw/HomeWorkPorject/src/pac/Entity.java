@@ -1,4 +1,4 @@
-package entities;
+package pac;
 
 public class Entity {
     int id;

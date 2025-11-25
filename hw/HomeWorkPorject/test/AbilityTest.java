@@ -1,10 +1,8 @@
-import abilities.Ability;
-import abilities.DependencyGraph;
+import pac.Ability;
+import pac.DependencyGraph;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
-
-import abilities.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +14,9 @@ public class AbilityTest {
 
     @BeforeEach
     public void setUp() {
-        slash = new Ability("1", "Slash", "Basic melee attack", 0);
-        parry = new Ability("2", "Parry", "Defensive stance", 50);
-        whirlwind = new Ability("3", "Whirlwind", "Attack all enemies", 100);
+        slash = new Ability(1, "Slash", "Basic melee attack", 0);
+        parry = new Ability(2, "Parry", "Defensive stance", 50);
+        whirlwind = new Ability(3, "Whirlwind", "Attack all enemies", 100);
     }
 
     @Test

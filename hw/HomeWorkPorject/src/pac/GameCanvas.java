@@ -1,11 +1,8 @@
-package gui;
+package pac;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import entities.Entity;
-import loader.*;
 
 public class GameCanvas extends Canvas {
     private World map;

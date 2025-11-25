@@ -1,4 +1,4 @@
-package abilities;
+package pac;
 
 import java.util.*;
 

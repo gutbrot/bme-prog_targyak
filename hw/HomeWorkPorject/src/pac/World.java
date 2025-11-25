@@ -1,6 +1,4 @@
-package loader;
-
-import entities.Entity;
+package pac;
 
 import java.util.ArrayList;
 import java.util.List;
