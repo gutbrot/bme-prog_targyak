@@ -6,12 +6,12 @@ import java.awt.*;
 public class GameFrame extends JFrame {
     JButton upButton, downButton, rightButton, leftButton;
     Canvas canvas;
-    public GameFrame(World world) {
-        canvas = new GameCanvas(world);
+    public GameFrame(Model model) {
+        canvas = new GameCanvas(model.getWorld());
         add(canvas);
-        setSize(world.cols * 32, world.rows * 32);
+        setSize(model.getWorld().cols * 32, model.getWorld().rows * 32);
         setVisible(true);
-
+        System.out.println("Game visible");
         upButton.addActionListener(e -> {
 
         });

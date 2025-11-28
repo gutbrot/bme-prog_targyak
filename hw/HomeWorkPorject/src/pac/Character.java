@@ -10,4 +10,5 @@ public class Character extends Entity {
     public void setName(String name){
         this.name = name;
     }
+    public void setCast(String cast){}
 }
