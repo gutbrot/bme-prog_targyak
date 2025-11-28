@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 
-import static pac.XmlMapLoader.loadAll;
 
 public class MenuFrame extends JFrame {
 
@@ -14,13 +13,11 @@ public class MenuFrame extends JFrame {
     private final JTextField nameField = new JTextField(20);
     private final JButton startButton = new JButton("Play!");
 
-    private final Character player;
-    private final GameEngine.ModelHolder holder;
+    private final Model model;
     private final CountDownLatch latch;
 
-    public MenuFrame(Character player, GameEngine.ModelHolder holder, CountDownLatch latch) {
-        this.player = player;
-        this.holder = holder;
+    public MenuFrame(Model model, CountDownLatch latch) {
+        this.model = model;
         this.latch = latch;
 
         String[] casts = {"Warrior", "Mage", "Monk"};
@@ -42,6 +39,7 @@ public class MenuFrame extends JFrame {
         startButton.addActionListener(new StartButtonActionListener());
 
         setVisible(true);
+        System.out.println("Menu visible");
     }
 
     class StartButtonActionListener implements ActionListener {
@@ -58,16 +56,17 @@ public class MenuFrame extends JFrame {
                 return;
             }
 
-            player.setName(name);
+            model.setPlayer(new Character(name,0,0));
+
             try {
-                // itt töltjük be az XML-t
-                holder.model = loadAll("res/data.xml");
+                XmlMapLoader.loadIntoModel("res/data.xml", model);
 
                 // jelezzük a main szálnak, hogy mehet tovább
                 latch.countDown();
 
                 // menü bezárása
                 dispose();
+                System.out.println("Menu disposed");
 
             } catch (Exception ex) {
                 ex.printStackTrace();

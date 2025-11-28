@@ -11,6 +11,7 @@
     <enemies>
         <enemy type="goblin" x="2" y="1"/>
         <enemy type="orc"    x="4" y="3"/>
+        <enemy type="orc"    x="1" y="1"/>
     </enemies>
 
     <abilities>

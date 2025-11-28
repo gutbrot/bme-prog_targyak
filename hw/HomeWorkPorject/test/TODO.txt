@@ -1,0 +1,2 @@
+Tesztelés-támogatás (JUnit)
+Legalább 3 osztály összesen 10 metódusának tesztelése.
