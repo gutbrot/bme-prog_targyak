@@ -14,11 +14,9 @@ public class MenuFrame extends JFrame {
     private final JButton startButton = new JButton("Play!");
 
     private final Model model;
-    private final Character player;
     private final CountDownLatch latch;
 
-    public MenuFrame(Character player, Model model, CountDownLatch latch) {
-        this.player = player;
+    public MenuFrame(Model model, CountDownLatch latch) {
         this.model = model;
         this.latch = latch;
 
@@ -58,8 +56,7 @@ public class MenuFrame extends JFrame {
                 return;
             }
 
-            player.setName(name);
-            player.setCast(cast);
+            model.setPlayer(new Character(name,0,0));
 
             try {
                 XmlMapLoader.loadIntoModel("res/data.xml", model);
