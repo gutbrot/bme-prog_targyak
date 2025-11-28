@@ -1,21 +1,22 @@
 <game rows="5" cols="5">
 
     <map>
-        <row>0 0 1 1 2</row>
-        <row>0 1 1 2 2</row>
-        <row>0 1 0 2 2</row>
-        <row>1 1 0 0 0</row>
-        <row>2 2 2 0 0</row>
+        <row>0 1 1 1 0</row>
+        <row>0 0 0 0 0</row>
+        <row>1 1 1 0 0</row>
+        <row>0 0 0 0 0</row>
+        <row>0 0 0 0 0</row>
     </map>
 
     <enemies>
-        <enemy type="goblin" x="2" y="1"/>
+        <enemy type="goblin" x="2" y="4"/>
         <enemy type="orc"    x="4" y="3"/>
         <enemy type="orc"    x="1" y="1"/>
     </enemies>
 
     <abilities>
         <ability id="1" name="Slash" description="Basic attack" cost="0"/>
+        <ability id="4" name="Bonk" description="Basic attack" cost="0"/>
         <ability id="2" name="Parry" description="Defend" cost="10">
             <requires>1</requires>
         </ability>

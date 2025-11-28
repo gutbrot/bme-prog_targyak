@@ -56,17 +56,6 @@ public class DependencyGraph {
         return unlockable;
     }
 
-    // For drawing or visualization: topologically sort the abilities
-    public List<Ability> topologicalOrder() {
-        Set<Ability> visited = new HashSet<>();
-        List<Ability> result = new ArrayList<>();
-        for (Ability a : adjList.keySet()) {
-            dfs(a, visited, result);
-        }
-        Collections.reverse(result);
-        return result;
-    }
-
     private void dfs(Ability node, Set<Ability> visited, List<Ability> result) {
         if (!visited.contains(node)) {
             visited.add(node);
@@ -76,4 +65,18 @@ public class DependencyGraph {
             result.add(node);
         }
     }
+    public Set<Ability> getUnlocked(Set<Ability> unlocked) {
+        Set<Ability> result = new HashSet<>();
+        for (Ability a : adjList.keySet()) {
+            if (unlocked.contains(a)) {
+                result.add(a);
+            }
+        }
+        return result;
+    }
+    public Collection<Ability> getAllAbilities() {
+        return adjList.keySet();
+    }
+
+
 }

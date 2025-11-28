@@ -2,11 +2,14 @@ package pac;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Set;
 
 public class GameFrame extends JFrame {
     private JButton upButton, downButton, rightButton, leftButton;
     private Canvas canvas;
     private final Model model;
+    UnlockedAbilityPanel unlockedPanel;
+
 
     public GameFrame(Model model) {
         this.model = model;
@@ -70,8 +73,49 @@ public class GameFrame extends JFrame {
             System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         });
 
+        unlockedPanel = new UnlockedAbilityPanel(model);
+        add(unlockedPanel, BorderLayout.EAST);
+
         pack(); // ha a canvas megfelelő méretet ad
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
+    public class UnlockedAbilityPanel extends JPanel {
+
+        private JComboBox<Ability> comboBox;
+
+        public UnlockedAbilityPanel(Model model) {
+            setLayout(new BorderLayout());
+            add(new JLabel("Available Abilities:"), BorderLayout.NORTH);
+
+            comboBox = new JComboBox<>();
+            add(comboBox, BorderLayout.CENTER);
+
+            refresh(model);
+        }
+
+        public void refresh(Model model) {
+
+            comboBox.removeAllItems();
+
+            Set<Ability> unlocked = model.getPlayer().getUnlockedAbilities();
+
+            // Ez adja meg a jelenleg elérhető (feloldható) abilityket
+            Set<Ability> unlockable = model.getGraph().getUnlockable(unlocked);
+
+            for (Ability ability : unlockable) {
+                comboBox.addItem(ability);
+            }
+
+            revalidate();
+            repaint();
+        }
+
+        public Ability getSelectedAbility() {
+            return (Ability) comboBox.getSelectedItem();
+        }
+    }
+
+
 }

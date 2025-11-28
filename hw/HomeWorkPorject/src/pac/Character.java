@@ -1,9 +1,13 @@
 package pac;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 public class Character extends Entity {
-    List<Item> inventory;
-    int level;
+    private Set<Ability> unlockedAbilities = new HashSet<>();
+
     public Character(String name, int xPosition, int yPosition) {
         super(name, xPosition, yPosition);
     }
@@ -11,4 +15,16 @@ public class Character extends Entity {
         this.name = name;
     }
     public void setCast(String cast){}
+
+    public Set<Ability> getUnlockedAbilities() {
+        return Collections.unmodifiableSet(unlockedAbilities);
+    }
+    public void unlockAbility(Ability a) {
+        unlockedAbilities.add(a);
+    }
+    public boolean hasAbility(Ability ability) {
+        return unlockedAbilities.contains(ability);
+    }
+    List<Item> inventory;
+    int level;
 }
