@@ -25,4 +25,6 @@ public class Entity {
         return yPos;
     }
     public void setPos(int nx, int ny){ xPos=nx; yPos=ny; }
+    public int getHp(){return hp;}
+    public void setHp(int hp){this.hp = hp;}
 }

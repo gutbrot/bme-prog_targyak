@@ -7,7 +7,8 @@ import java.util.Set;
 
 public class Character extends Entity {
     private Set<Ability> unlockedAbilities = new HashSet<>();
-
+    List<Item> inventory;
+    int xp = 10;
     public Character(String name, int xPosition, int yPosition) {
         super(name, xPosition, yPosition);
     }
@@ -25,6 +26,5 @@ public class Character extends Entity {
     public boolean hasAbility(Ability ability) {
         return unlockedAbilities.contains(ability);
     }
-    List<Item> inventory;
-    int level;
+    public int getXp(){return xp;}
 }

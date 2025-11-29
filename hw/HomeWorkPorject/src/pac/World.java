@@ -29,15 +29,19 @@ public class World {
         return tiles;
     }
 
-    public java.util.List<Entity> getEntities(){
-        List<Entity> entities = new ArrayList<>();
-        for(Tile[] row: tiles) {
-            for (Tile tile : row) {
-                entities.addAll(tile.entities);
-            }
+    public List<Monster> getMonstersAt(int x, int y) {
+        List<Monster> list = new ArrayList<>();
+
+        for (Entity e : tiles[y][x].getEntities()) {
+            if (e instanceof Monster m) list.add(m);
         }
-        return entities;
+        return list;
     }
+
+    public void removeEntity(Entity e) {
+        tiles[e.getY()][e.getX()].removeEntity(e);
+    }
+
 
     public boolean movePlayer(Character player,int dx, int dy) {
         if (player == null) return false;

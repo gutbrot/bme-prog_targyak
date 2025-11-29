@@ -6,7 +6,7 @@ public class Ability {
     private final int id;
     private final String name;
     private final String description;
-    private final int cost; // XP or points required
+    private int cost; // XP or points required
 
     public Ability(int id, String name, String description, int cost) {
         this.id = id;
@@ -34,6 +34,12 @@ public class Ability {
     }
     @Override
     public String toString() {
-        return name;                 // vagy pl. name + " (cost: " + cost + ")"
+        if(cost != 0)
+            return name + " " + cost;
+        return name;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }
