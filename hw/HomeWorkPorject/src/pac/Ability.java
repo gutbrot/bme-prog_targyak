@@ -7,12 +7,14 @@ public class Ability {
     private final String name;
     private final String description;
     private int cost; // XP or points required
+    private int dmg;
 
-    public Ability(int id, String name, String description, int cost) {
+    public Ability(int id, String name, String description, int cost, int dmg) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.cost = cost;
+        this.dmg = dmg;
     }
 
     public int getId() { return id; }
@@ -42,4 +44,7 @@ public class Ability {
     public void setCost(int cost) {
         this.cost = cost;
     }
+    public int getDamage() { return dmg; }
+    public void setDamage(int damage) { this.dmg = damage; }
+
 }

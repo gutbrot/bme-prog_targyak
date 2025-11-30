@@ -56,8 +56,8 @@ public class XmlMapLoader {
             String type = e.getAttribute("type");
             int x = Integer.parseInt(e.getAttribute("x"));
             int y = Integer.parseInt(e.getAttribute("y"));
-
-            Monster m = new Monster(type, x, y);
+            int hp = Integer.parseInt(e.getAttribute("hp"));
+            Monster m = new Monster(type, x, y, hp);
             world.addEntity(m);
         }
     }
@@ -78,8 +78,8 @@ public class XmlMapLoader {
             String name = e.getAttribute("name");
             String desc = e.getAttribute("description");
             int cost = Integer.parseInt(e.getAttribute("cost"));
-
-            Ability a = new Ability(id, name, desc, cost);
+            int dmg = Integer.parseInt(e.getAttribute("dmg"));
+            Ability a = new Ability(id, name, desc, cost, dmg);
             map.put(id, a);
             graph.addAbility(a);
         }

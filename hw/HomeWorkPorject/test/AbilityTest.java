@@ -14,9 +14,9 @@ public class AbilityTest {
 
     @BeforeEach
     public void setUp() {
-        slash = new Ability(1, "Slash", "Basic melee attack", 0);
-        parry = new Ability(2, "Parry", "Defensive stance", 50);
-        whirlwind = new Ability(3, "Whirlwind", "Attack all enemies", 100);
+        slash = new Ability(1, "Slash", "Basic melee attack", 0,8);
+        parry = new Ability(2, "Parry", "Defensive stance", 50,0);
+        whirlwind = new Ability(3, "Whirlwind", "Attack all enemies", 100, 50);
     }
 
     @Test

@@ -8,7 +8,6 @@ public class World {
     public int rows;
     public int cols;
 
-
     public World(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -42,7 +41,6 @@ public class World {
         tiles[e.getY()][e.getX()].removeEntity(e);
     }
 
-
     public boolean movePlayer(Character player,int dx, int dy) {
         if (player == null) return false;
 
@@ -52,21 +50,16 @@ public class World {
         int nx = x + dx;
         int ny = y + dy;
 
-        // pályán belül?
         if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) return false;
 
         Tile target = tiles[ny][nx];
 
-        // fal? (pl. type==1 a wall)
         if (target.getType() == 1) return false;
 
-        // régi tile-ról levesszük a playert
         tiles[y][x].removeEntity(player);
 
-        // player koordináták frissítése
         player.setPos(nx,ny);
 
-        // új tile-ra rátesszük
         target.addEntity(player);
 
         return true;

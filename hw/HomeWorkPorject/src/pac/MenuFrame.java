@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 
-
 public class MenuFrame extends JFrame {
 
     private final JComboBox<String> box;
@@ -56,7 +55,7 @@ public class MenuFrame extends JFrame {
                 return;
             }
 
-            model.setPlayer(new Character(name,0,0));
+            model.setPlayer(new Character(name,0,0,20));
 
             try {
                 XmlMapLoader.loadIntoModel("res/data.xml", model);

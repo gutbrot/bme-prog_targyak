@@ -9,8 +9,8 @@ public class Character extends Entity {
     private Set<Ability> unlockedAbilities = new HashSet<>();
     List<Item> inventory;
     int xp = 10;
-    public Character(String name, int xPosition, int yPosition) {
-        super(name, xPosition, yPosition);
+    public Character(String name, int xPosition, int yPosition, int hp) {
+        super(name, xPosition, yPosition, hp);
     }
     public void setName(String name){
         this.name = name;

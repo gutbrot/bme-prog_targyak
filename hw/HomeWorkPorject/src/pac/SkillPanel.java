@@ -4,46 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Set;
 
-public class TwoListSkillPanel extends JPanel {
+public class SkillPanel extends JPanel {
 
-    private JComboBox<Ability> unlockedBox;
     private JComboBox<Ability> unlockableBox;
 
-    private JButton useButton;
     private JButton unlockButton;
 
     private final Model model;
 
-    public TwoListSkillPanel(Model model) {
+    public SkillPanel(Model model) {
         this.model = model;
 
-        setLayout(new GridLayout(1, 2));  // két egymás melletti panel
+        setLayout(new GridLayout(1, 2));
 
-        add(createUnlockedPanel());
         add(createUnlockablePanel());
 
         refresh();
-    }
-
-    private JPanel createUnlockedPanel() {
-
-        JPanel p = new JPanel(new BorderLayout());
-        p.add(new JLabel("Unlocked Abilities:"), BorderLayout.NORTH);
-
-        unlockedBox = new JComboBox<>();
-        p.add(unlockedBox, BorderLayout.CENTER);
-
-        useButton = new JButton("Use");
-        useButton.addActionListener(e -> {
-            Ability a = (Ability) unlockedBox.getSelectedItem();
-            if (a != null) {
-                System.out.println("Using ability: " + a.getName());
-            }
-        });
-
-        p.add(useButton, BorderLayout.SOUTH);
-
-        return p;
     }
 
     private JPanel createUnlockablePanel() {
@@ -62,10 +38,8 @@ public class TwoListSkillPanel extends JPanel {
 
             if (a == null) return;
 
-            // ability feloldása a playerhez
             player.unlockAbility(a);
 
-            // FELOLDOTT ability cost-ját nullázzuk
             a.setCost(0);
 
             System.out.println("Unlocked: " + a.getName());
@@ -78,7 +52,6 @@ public class TwoListSkillPanel extends JPanel {
         return p;
     }
 
-
     public void refresh() {
 
         Character player = model.getPlayer();
@@ -86,13 +59,6 @@ public class TwoListSkillPanel extends JPanel {
         Set<Ability> unlocked = player.getUnlockedAbilities();
         Set<Ability> unlockable = model.getGraph().getUnlockable(unlocked);
 
-        // Bal panel: unlocked abilities
-        unlockedBox.removeAllItems();
-        for (Ability a : unlocked) {
-            unlockedBox.addItem(a);
-        }
-
-        // Jobb panel: unlockable abilities
         unlockableBox.removeAllItems();
         for (Ability a : unlockable) {
             unlockableBox.addItem(a);
@@ -108,10 +74,6 @@ public class TwoListSkillPanel extends JPanel {
         Character player = model.getPlayer();
         Ability selectedUnlockable = (Ability) unlockableBox.getSelectedItem();
 
-        // Use button
-        useButton.setEnabled(unlockedBox.getItemCount() > 0);
-
-        // Unlock button
         if (selectedUnlockable == null) {
             unlockButton.setEnabled(false);
             return;

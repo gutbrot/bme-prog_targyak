@@ -11,30 +11,47 @@ public class CombatStatusPanel extends JPanel {
     private JLabel playerHpLabel;
     private DefaultListModel<String> monsterListModel;
     private JList<String> monsterList;
+
+    private JComboBox<Monster> targetBox;
+    private JComboBox<Ability> abilityBox;
     private JButton attackButton;
+    private JButton useAbilityButton;
 
     public CombatStatusPanel(Model model) {
         this.model = model;
 
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(200, 400));
+        setPreferredSize(new Dimension(260, 400));
 
-        // PLAYER HP
         playerHpLabel = new JLabel("Player HP: ", SwingConstants.CENTER);
         add(playerHpLabel, BorderLayout.NORTH);
 
-        // MONSTER LIST
         monsterListModel = new DefaultListModel<>();
         monsterList = new JList<>(monsterListModel);
         add(new JScrollPane(monsterList), BorderLayout.CENTER);
 
-        // ATTACK BUTTON
+        JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
+
+        targetBox = new JComboBox<>();
+        bottomPanel.add(targetBox);
+
         attackButton = new JButton("Attack");
         attackButton.setEnabled(false);
+        attackButton.addActionListener(e -> basicAttack());
+        bottomPanel.add(attackButton);
 
-        attackButton.addActionListener(e -> attack());
+        JPanel abilityPanel = new JPanel(new BorderLayout());
+        abilityBox = new JComboBox<>();
+        useAbilityButton = new JButton("Use ability");
 
-        add(attackButton, BorderLayout.SOUTH);
+        useAbilityButton.addActionListener(e -> abilityAttack());
+
+        abilityPanel.add(abilityBox, BorderLayout.CENTER);
+        abilityPanel.add(useAbilityButton, BorderLayout.EAST);
+
+        bottomPanel.add(abilityPanel);
+
+        add(bottomPanel, BorderLayout.SOUTH);
 
         refresh();
     }
@@ -44,43 +61,52 @@ public class CombatStatusPanel extends JPanel {
         Character p = model.getPlayer();
         playerHpLabel.setText("Player HP: " + p.getHp());
 
-        monsterListModel.clear();
-
         List<Monster> monsters = model.getWorld().getMonstersAt(p.getX(), p.getY());
+
+        monsterListModel.clear();
+        targetBox.removeAllItems();
 
         if (monsters.isEmpty()) {
             monsterListModel.addElement("No monsters here");
             attackButton.setEnabled(false);
+            useAbilityButton.setEnabled(false);
         } else {
-            attackButton.setEnabled(true);
             for (Monster m : monsters) {
                 monsterListModel.addElement(m.getName() + " - HP: " + m.getHp());
+                targetBox.addItem(m);
             }
+            attackButton.setEnabled(true);
         }
 
-        repaint();
-        revalidate();
-    }
+        abilityBox.removeAllItems();
+        for (Ability a : p.getUnlockedAbilities()) {
+            abilityBox.addItem(a);
+        }
 
-    private void attack() {
-
-        List<Monster> monsters = model.getWorld().getMonstersAt(
-                model.getPlayer().getX(), model.getPlayer().getY()
+        useAbilityButton.setEnabled(
+                !monsters.isEmpty() && abilityBox.getItemCount() > 0
         );
 
-        if (monsters.isEmpty()) return;
+        revalidate();
+        repaint();
+    }
+
+    private void basicAttack() {
+
+        Monster target = (Monster) targetBox.getSelectedItem();
+        if (target == null) return;
 
         Character p = model.getPlayer();
-        Monster m = monsters.get(0);  // egyszerre egyet támadunk
 
-        // Player attack
-        m.setHp(m.getHp() - 5);
-        if (m.getHp() <= 0) {
-            m.setHp(0);
-            model.getWorld().removeEntity(m);
+        int dmgPlayer = 5;
+        target.setHp(target.getHp() - dmgPlayer);
+
+        if (target.getHp() <= 0) {
+            target.setHp(0);
+            model.getWorld().removeEntity(target);
         } else {
-            // Monster retaliate
-            p.setHp(p.getHp() - 3);
+            int dmgMonster = 3;
+            p.setHp(p.getHp() - dmgMonster);
             if (p.getHp() <= 0) {
                 p.setHp(0);
                 JOptionPane.showMessageDialog(this, "You died!");
@@ -88,6 +114,32 @@ public class CombatStatusPanel extends JPanel {
             }
         }
 
+        refresh();
+    }
+
+    private void abilityAttack() {
+
+        Monster target = (Monster) targetBox.getSelectedItem();
+        Ability ability = (Ability) abilityBox.getSelectedItem();
+        if (target == null || ability == null) return;
+
+        Character p = model.getPlayer();
+
+        int dmgPlayer = ability.getDamage();
+        target.setHp(target.getHp() - dmgPlayer);
+
+        if (target.getHp() <= 0) {
+            target.setHp(0);
+            model.getWorld().removeEntity(target);
+        } else {
+            int dmgMonster = 3;
+            p.setHp(p.getHp() - dmgMonster);
+            if (p.getHp() <= 0) {
+                p.setHp(0);
+                JOptionPane.showMessageDialog(this, "You died!");
+                System.exit(0);
+            }
+        }
         refresh();
     }
 }

@@ -2,7 +2,6 @@ package pac;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Set;
 
 public class GameFrame extends JFrame {
     private JButton upButton, downButton, rightButton, leftButton;
@@ -16,20 +15,17 @@ public class GameFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Canvas középen
         canvas = new GameCanvas(model.getWorld(), model.getPlayer());
         add(canvas, BorderLayout.CENTER);
 
-        // Irányítógombok alul
-        JPanel controlPanel = new JPanel(new GridLayout(2, 3)); // pl. 2x3-as rács
+        JPanel controlPanel = new JPanel(new GridLayout(2, 3));
 
         upButton = new JButton("↑");
         downButton = new JButton("↓");
         leftButton = new JButton("←");
         rightButton = new JButton("→");
 
-        // elrendezés (középen fel/le, oldalt bal/jobb)
-        controlPanel.add(new JLabel());      // üres
+        controlPanel.add(new JLabel());
         controlPanel.add(upButton);
         controlPanel.add(new JLabel());
         controlPanel.add(leftButton);
@@ -42,7 +38,6 @@ public class GameFrame extends JFrame {
         add(combatPanel, BorderLayout.NORTH);
 
         System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
-        // ActionListenerek – csak mozgást kérnek, logika World-ben
         upButton.addActionListener(e -> {
             if (model.getWorld().movePlayer(model.getPlayer(),0, -1)) {
                 canvas.repaint();
@@ -78,15 +73,11 @@ public class GameFrame extends JFrame {
             }
             System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         });
-        TwoListSkillPanel skillPanel = new TwoListSkillPanel(model);
+        SkillPanel skillPanel = new SkillPanel(model);
         add(skillPanel, BorderLayout.EAST);
 
-
-
-
-        pack(); // ha a canvas megfelelő méretet ad
+        pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
 }
