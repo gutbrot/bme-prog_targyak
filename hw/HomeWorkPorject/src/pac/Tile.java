@@ -7,7 +7,6 @@ public class Tile {
     public int x,y, width, height;
     private int type;
     List<Entity> entities = new ArrayList<>();
-    public boolean selected = false;
 
     public Tile(int type,int xPosition, int yPosition, int width, int height) {
         this.type = type;
