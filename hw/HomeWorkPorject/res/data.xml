@@ -5,7 +5,7 @@
         <row>0 0 0 0 0</row>
         <row>1 1 1 0 0</row>
         <row>0 0 0 0 0</row>
-        <row>0 0 0 0 0</row>
+        <row>2 0 0 0 0</row>
     </map>
 
     <enemies>
@@ -26,4 +26,8 @@
         </ability>
     </abilities>
 
+    <casts>
+        <cast name="Warrior" hp="20" dmg="5"/>
+        <cast name="Mage" hp="15" dmg="3"/>
+    </casts>
 </game>

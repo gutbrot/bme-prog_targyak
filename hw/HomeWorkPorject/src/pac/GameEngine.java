@@ -8,16 +8,24 @@ public class GameEngine {
 
     public static void main(String[] args) throws Exception {
 
-        CountDownLatch latch = new CountDownLatch(1);
+        CountDownLatch menuLatch = new CountDownLatch(1);
 
         SwingUtilities.invokeLater(() -> {
-            new MenuFrame(model, latch);
+            new MenuFrame(model, menuLatch);
         });
 
-        latch.await();
+        menuLatch.await();
+
+        CountDownLatch gameLatch = new CountDownLatch(1);
 
         SwingUtilities.invokeLater(() -> {
-            new GameFrame(model);
+            new GameFrame(model, gameLatch);
+        });
+
+        gameLatch.await();
+
+        SwingUtilities.invokeLater(() -> {
+            new GameCompletedFrame();
         });
     }
 

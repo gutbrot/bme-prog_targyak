@@ -54,16 +54,23 @@ public class MenuFrame extends JFrame {
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
-            model.setPlayer(new Character(name,0,0,20));
+            switch (cast){
+                case "Warrior":
+                    model.setPlayer(new Character(name,0,0,20));
+                    break;
+                case "Mage":
+                    model.setPlayer(new Character(name,0,0,15));
+                    break;
+                case "Monk":
+                    model.setPlayer(new Character(name,0,0,18));
+                    break;
+            }
 
             try {
                 XmlMapLoader.loadIntoModel("res/data.xml", model);
 
-                // jelezzük a main szálnak, hogy mehet tovább
                 latch.countDown();
 
-                // menü bezárása
                 dispose();
                 System.out.println("Menu disposed");
 

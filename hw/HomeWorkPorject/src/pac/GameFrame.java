@@ -2,15 +2,16 @@ package pac;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.CountDownLatch;
 
 public class GameFrame extends JFrame {
     private JButton upButton, downButton, rightButton, leftButton;
     private Canvas canvas;
     private final Model model;
+    private  CountDownLatch latch;
 
-    public GameFrame(Model model) {
+    public GameFrame(Model model, CountDownLatch latch) {
         this.model = model;
-
         setTitle("Dungeon");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -39,39 +40,55 @@ public class GameFrame extends JFrame {
 
         System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         upButton.addActionListener(e -> {
-            if (model.getWorld().movePlayer(model.getPlayer(),0, -1)) {
+            MoveResult result = model.getWorld().movePlayer(model.getPlayer(),0, -1);
+            if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();
-                System.out.println("Move up");
+                combatPanel.refresh();   // ha van ilyen
+            } else if (result == MoveResult.GAME_COMPLETED) {
+                canvas.repaint();
+                latch.countDown();
+                dispose();
+                return;
             }
-            System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         });
 
         downButton.addActionListener(e -> {
-            if (model.getWorld().movePlayer(model.getPlayer(),0, 1)) {
+            MoveResult result = model.getWorld().movePlayer(model.getPlayer(),0, 1);
+            if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();
-                System.out.println("Move down");
+                combatPanel.refresh();   // ha van ilyen
+            } else if (result == MoveResult.GAME_COMPLETED) {
+                canvas.repaint();
+                latch.countDown();
+                dispose();
+                return;
             }
-            System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         });
 
         leftButton.addActionListener(e -> {
-            if (model.getWorld().movePlayer(model.getPlayer(),-1, 0)) {
+            MoveResult result = model.getWorld().movePlayer(model.getPlayer(),-1, 0);
+            if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();
-                System.out.println("Move left");
+                combatPanel.refresh();   // ha van ilyen
+            } else if (result == MoveResult.GAME_COMPLETED) {
+                canvas.repaint();
+                latch.countDown();
+                dispose();
+                return;
             }
-            System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         });
 
         rightButton.addActionListener(e -> {
-            if (model.getWorld().movePlayer(model.getPlayer(),1, 0)) {
+            MoveResult result = model.getWorld().movePlayer(model.getPlayer(),1, 0);
+            if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();
-                System.out.println("Move right");
+                combatPanel.refresh();   // ha van ilyen
+            } else if (result == MoveResult.GAME_COMPLETED) {
+                canvas.repaint();
+                latch.countDown();
+                dispose();
+                return;
             }
-            System.out.println("player x: " + model.getPlayer().getX() + " y : " + model.getPlayer().getY());
         });
         SkillPanel skillPanel = new SkillPanel(model);
         add(skillPanel, BorderLayout.EAST);

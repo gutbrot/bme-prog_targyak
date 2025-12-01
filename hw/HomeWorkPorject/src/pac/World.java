@@ -41,8 +41,8 @@ public class World {
         tiles[e.getY()][e.getX()].removeEntity(e);
     }
 
-    public boolean movePlayer(Character player,int dx, int dy) {
-        if (player == null) return false;
+    public MoveResult movePlayer(Character player, int dx, int dy) {
+        if (player == null) return MoveResult.INVALID;
 
         int x = player.getX();
         int y = player.getY();
@@ -50,18 +50,30 @@ public class World {
         int nx = x + dx;
         int ny = y + dy;
 
-        if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) return false;
+        // pályán kívül?
+        if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) {
+            return MoveResult.INVALID;
+        }
 
         Tile target = tiles[ny][nx];
 
-        if (target.getType() == 1) return false;
+        // fal (pl. type == 1)
+        if (target.getType() == 1) {
+            return MoveResult.INVALID;
+        }
 
+        // régi tile-ról pl. levétel, ha ott tárolod
         tiles[y][x].removeEntity(player);
 
-        player.setPos(nx,ny);
+        // új pozíció
+        player.setPos(nx, ny);
+        tiles[ny][nx].addEntity(player);
 
-        target.addEntity(player);
+        // célmező? (type == 2)
+        if (target.getType() == 2) {
+            return MoveResult.GAME_COMPLETED;
+        }
 
-        return true;
+        return MoveResult.VALID;
     }
 }
