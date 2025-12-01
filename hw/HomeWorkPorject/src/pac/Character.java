@@ -27,4 +27,8 @@ public class Character extends Entity {
         return unlockedAbilities.contains(ability);
     }
     public int getXp(){return xp;}
+
+    public void addXp(int i) {
+        xp+=i;
+    }
 }

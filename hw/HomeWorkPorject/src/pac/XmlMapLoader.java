@@ -25,7 +25,7 @@ public class XmlMapLoader {
         System.out.println("XML loaded");
     }
 
-    private static World loadMap(Element root) {
+    public static World loadMap(Element root) {
         int rows = Integer.parseInt(root.getAttribute("rows"));
         int cols = Integer.parseInt(root.getAttribute("cols"));
 

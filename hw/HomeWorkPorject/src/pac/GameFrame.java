@@ -43,7 +43,8 @@ public class GameFrame extends JFrame {
             MoveResult result = model.getWorld().movePlayer(model.getPlayer(),0, -1);
             if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();   // ha van ilyen
+                combatPanel.refresh();
+                System.out.println("player x: " + model.getPlayer().getX() + " y: " + model.getPlayer().getY());
             } else if (result == MoveResult.GAME_COMPLETED) {
                 canvas.repaint();
                 latch.countDown();
@@ -56,7 +57,8 @@ public class GameFrame extends JFrame {
             MoveResult result = model.getWorld().movePlayer(model.getPlayer(),0, 1);
             if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();   // ha van ilyen
+                combatPanel.refresh();
+                System.out.println("player x: " + model.getPlayer().getX() + " y: " + model.getPlayer().getY());
             } else if (result == MoveResult.GAME_COMPLETED) {
                 canvas.repaint();
                 latch.countDown();
@@ -69,7 +71,8 @@ public class GameFrame extends JFrame {
             MoveResult result = model.getWorld().movePlayer(model.getPlayer(),-1, 0);
             if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();   // ha van ilyen
+                combatPanel.refresh();
+                System.out.println("player x: " + model.getPlayer().getX() + " y: " + model.getPlayer().getY());
             } else if (result == MoveResult.GAME_COMPLETED) {
                 canvas.repaint();
                 latch.countDown();
@@ -82,7 +85,8 @@ public class GameFrame extends JFrame {
             MoveResult result = model.getWorld().movePlayer(model.getPlayer(),1, 0);
             if (result == MoveResult.VALID) {
                 canvas.repaint();
-                combatPanel.refresh();   // ha van ilyen
+                combatPanel.refresh();
+                System.out.println("player x: " + model.getPlayer().getX() + " y: " + model.getPlayer().getY());
             } else if (result == MoveResult.GAME_COMPLETED) {
                 canvas.repaint();
                 latch.countDown();
