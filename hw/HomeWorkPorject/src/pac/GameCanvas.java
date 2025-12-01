@@ -30,13 +30,11 @@ public class GameCanvas extends Canvas {
                 g.setColor(color);
                 g.fillRect(t.x, t.y, t.width, t.height);
 
-                // Enemy or entity
                 if (t.entityCount() > 0) {
                     g.setColor(Color.GREEN);
                     g.drawString("E", t.x + 12, t.y + 20);
                 }
 
-                // Player
                 if (player != null &&
                         r == player.getY() &&
                         c == player.getX()) {

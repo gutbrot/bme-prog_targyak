@@ -1,28 +1,33 @@
 <game rows="5" cols="5">
 
     <map>
-        <row>0 0 1 1 2</row>
-        <row>0 1 1 2 2</row>
-        <row>0 1 0 2 2</row>
-        <row>1 1 0 0 0</row>
-        <row>2 2 2 0 0</row>
+        <row>0 1 1 1 0</row>
+        <row>0 0 0 0 0</row>
+        <row>1 1 1 0 0</row>
+        <row>0 0 0 0 0</row>
+        <row>2 0 0 0 0</row>
     </map>
 
     <enemies>
-        <enemy type="goblin" x="2" y="1"/>
-        <enemy type="orc"    x="4" y="3"/>
-        <enemy type="orc"    x="1" y="1"/>
+        <enemy type="goblin" x="2" y="4" hp="5"/>
+        <enemy type="orc"    x="4" y="3" hp="10"/>
+        <enemy type="orc"    x="1" y="1" hp="10"/>
     </enemies>
 
     <abilities>
-        <ability id="1" name="Slash" description="Basic attack" cost="0"/>
-        <ability id="2" name="Parry" description="Defend" cost="10">
+        <ability id="1" name="Slash" description="Basic attack" cost="0" dmg="3"/>
+        <ability id="4" name="Bonk" description="Basic attack" cost="0" dmg="10"/>
+        <ability id="2" name="Parry" description="Defend" cost="10" dmg="0">
             <requires>1</requires>
         </ability>
-        <ability id="3" name="Whirlwind" description="Spin attack" cost="20">
+        <ability id="3" name="Whirlwind" description="Spin attack" cost="7" dmg="6">
             <requires>1</requires>
             <requires>2</requires>
         </ability>
     </abilities>
 
+    <casts>
+        <cast name="Warrior" hp="20" dmg="5"/>
+        <cast name="Mage" hp="15" dmg="3"/>
+    </casts>
 </game>

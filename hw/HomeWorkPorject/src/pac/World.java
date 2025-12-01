@@ -8,7 +8,6 @@ public class World {
     public int rows;
     public int cols;
 
-
     public World(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -29,18 +28,21 @@ public class World {
         return tiles;
     }
 
-    public java.util.List<Entity> getEntities(){
-        List<Entity> entities = new ArrayList<>();
-        for(Tile[] row: tiles) {
-            for (Tile tile : row) {
-                entities.addAll(tile.entities);
-            }
+    public List<Monster> getMonstersAt(int x, int y) {
+        List<Monster> list = new ArrayList<>();
+
+        for (Entity e : tiles[y][x].getEntities()) {
+            if (e instanceof Monster m) list.add(m);
         }
-        return entities;
+        return list;
     }
 
-    public boolean movePlayer(Character player,int dx, int dy) {
-        if (player == null) return false;
+    public void removeEntity(Entity e) {
+        tiles[e.getY()][e.getX()].removeEntity(e);
+    }
+
+    public MoveResult movePlayer(Character player, int dx, int dy) {
+        if (player == null) return MoveResult.INVALID;
 
         int x = player.getX();
         int y = player.getY();
@@ -48,23 +50,30 @@ public class World {
         int nx = x + dx;
         int ny = y + dy;
 
-        // pályán belül?
-        if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) return false;
+        // pályán kívül?
+        if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) {
+            return MoveResult.INVALID;
+        }
 
         Tile target = tiles[ny][nx];
 
-        // fal? (pl. type==1 a wall)
-        if (target.getType() == 1) return false;
+        // fal (pl. type == 1)
+        if (target.getType() == 1) {
+            return MoveResult.INVALID;
+        }
 
-        // régi tile-ról levesszük a playert
+        // régi tile-ról pl. levétel, ha ott tárolod
         tiles[y][x].removeEntity(player);
 
-        // player koordináták frissítése
-        player.setPos(nx,ny);
+        // új pozíció
+        player.setPos(nx, ny);
+        tiles[ny][nx].addEntity(player);
 
-        // új tile-ra rátesszük
-        target.addEntity(player);
+        // célmező? (type == 2)
+        if (target.getType() == 2) {
+            return MoveResult.GAME_COMPLETED;
+        }
 
-        return true;
+        return MoveResult.VALID;
     }
 }

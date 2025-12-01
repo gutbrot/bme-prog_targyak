@@ -6,13 +6,15 @@ public class Ability {
     private final int id;
     private final String name;
     private final String description;
-    private final int cost; // XP or points required
+    private int cost; // XP or points required
+    private int dmg;
 
-    public Ability(int id, String name, String description, int cost) {
+    public Ability(int id, String name, String description, int cost, int dmg) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.cost = cost;
+        this.dmg = dmg;
     }
 
     public int getId() { return id; }
@@ -32,4 +34,17 @@ public class Ability {
     public int hashCode() {
         return Objects.hash(id);
     }
+    @Override
+    public String toString() {
+        if(cost != 0)
+            return name + " " + cost;
+        return name;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+    public int getDamage() { return dmg; }
+    public void setDamage(int damage) { this.dmg = damage; }
+
 }

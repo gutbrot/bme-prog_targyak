@@ -10,10 +10,11 @@ public class Entity {
     int speed;
     boolean isDead;
 
-    public Entity(String name, int xPosition, int yPosition) {
+    public Entity(String name, int xPosition, int yPosition, int hp) {
         this.name = name;
         this.xPos = xPosition;
         this.yPos = yPosition;
+        this.hp = hp;
     }
     public String getName(){
         return name;
@@ -25,4 +26,11 @@ public class Entity {
         return yPos;
     }
     public void setPos(int nx, int ny){ xPos=nx; yPos=ny; }
+    public int getHp(){return hp;}
+    public void setHp(int hp){this.hp = hp;}
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

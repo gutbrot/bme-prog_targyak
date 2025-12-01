@@ -3,28 +3,22 @@ package pac;
 import java.util.*;
 
 public class DependencyGraph {
-
-    // Map each ability to the list of abilities that depend on it
     private final Map<Ability, Set<Ability>> adjList = new HashMap<>();
 
-    // Add a new ability node to the graph
     public void addAbility(Ability a) {
         adjList.putIfAbsent(a, new HashSet<>());
     }
 
-    // Add a dependency: parent -> child
     public void addDependency(Ability parent, Ability child) {
         addAbility(parent);
         addAbility(child);
         adjList.get(parent).add(child);
     }
 
-    // Return list of abilities that depend on given ability
     public Set<Ability> getChildren(Ability a) {
         return adjList.getOrDefault(a, Collections.emptySet());
     }
 
-    // Return all prerequisite abilities of a given ability
     public Set<Ability> getParents(Ability a) {
         Set<Ability> parents = new HashSet<>();
         for (var entry : adjList.entrySet()) {
@@ -35,7 +29,6 @@ public class DependencyGraph {
         return parents;
     }
 
-    // Check if ability is unlockable (all prerequisites are unlocked)
     public boolean canUnlock(Ability a, Set<Ability> unlocked) {
         for (Ability prerequisite : getParents(a)) {
             if (!unlocked.contains(prerequisite)) {
@@ -45,7 +38,6 @@ public class DependencyGraph {
         return true;
     }
 
-    // Get all abilities that are currently unlockable
     public Set<Ability> getUnlockable(Set<Ability> unlocked) {
         Set<Ability> unlockable = new HashSet<>();
         for (Ability a : adjList.keySet()) {
@@ -56,24 +48,16 @@ public class DependencyGraph {
         return unlockable;
     }
 
-    // For drawing or visualization: topologically sort the abilities
-    public List<Ability> topologicalOrder() {
-        Set<Ability> visited = new HashSet<>();
-        List<Ability> result = new ArrayList<>();
+    public Set<Ability> getUnlocked(Set<Ability> unlocked) {
+        Set<Ability> result = new HashSet<>();
         for (Ability a : adjList.keySet()) {
-            dfs(a, visited, result);
+            if (unlocked.contains(a)) {
+                result.add(a);
+            }
         }
-        Collections.reverse(result);
         return result;
     }
-
-    private void dfs(Ability node, Set<Ability> visited, List<Ability> result) {
-        if (!visited.contains(node)) {
-            visited.add(node);
-            for (Ability child : getChildren(node)) {
-                dfs(child, visited, result);
-            }
-            result.add(node);
-        }
+    public Collection<Ability> getAllAbilities() {
+        return adjList.keySet();
     }
 }
