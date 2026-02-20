@@ -1,0 +1,148 @@
+Neptun kód: JYSM53
+
+1. Az MSYS2 UCRT64 környezet nem volt letöltve az eszközömre,  ezért először ezt telepítettem.
+
+
+2. Kódszerkesztőnek a Nano-t használtam, amit a pacman -S nano paranccsal telepítettem. Ennek segítségével létrehoztam main.cpp fájlt a C meghajtómon.
+
+
+3. Először telepítettem GCC-t a pacman -S mingw-w64-ucrt-x86_64-gcc paranccsal. Néhány fontosabbnak vélt kapcsoló:
+	-E: csak preprocesszor, nincs fordítás
+	-S: assembly kóddá alakít, nincs futtatható állomány
+	-c: csak fordít, de nem végez linkelést
+	-o <file>: Megadja a kimeneti fájl nevét.
+
+
+4. A g++ -E main.cpp parancs kiadása után elindul a preprocesszor (ez nálam hosszabb ideig futott). A futás utolsó néhány sora:
+
+# 1107 "C:/msys64/ucrt64/include/c++/14.2.0/istream" 2 3
+# 43 "C:/msys64/ucrt64/include/c++/14.2.0/iostream" 2 3
+
+namespace std
+{
+
+# 62 "C:/msys64/ucrt64/include/c++/14.2.0/iostream" 3
+  extern istream cin;
+  extern ostream cout;
+  extern ostream cerr;
+  extern ostream clog;
+
+
+  extern wistream wcin;
+  extern wostream wcout;
+  extern wostream wcerr;
+  extern wostream wclog;
+# 85 "C:/msys64/ucrt64/include/c++/14.2.0/iostream" 3
+
+}
+# 2 "main.cpp" 2
+
+# 2 "main.cpp"
+int main(){
+ std::cout<< "Hello" << std::endl;
+ return 0;
+}
+
+
+5. Először elindítottam a nano, ezzel létre hoztam a gy.cpp fájlt. A tartalma az alábbi lett:
+
+#define ALMA 0
+#define KORTE 1
+#define SZILVA 2
+ALMA,KORTE,KORTE,SZILVA,ALMA,ALMA 
+
+A g++ -E gy.cpp parancs kiadása után az alábbi kimenetet kaptam:
+
+$ g++ -E gy.cpp
+# 0 "gy.cpp"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "gy.cpp"
+
+
+0,1,1,2,0,0
+
+Az utolsó sorban látszik hogy a preprocesszor átalakította a gyümölcsök neveit számokká.
+
+
+6. Nanoval létrehoztam a két .cpp kiterjesztésű fájlt.
+A g++ -c main2.cpp parancs hiba nélkül lefutott és létrejött a main2.o fájlt.
+A g++ -c foo.cpp futtatásakor azonban az alábbi hibába ütköztem:
+
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+    4 | ┬á┬á┬á┬á┬á┬á┬á┬ástd::cout << str << std::endl;
+      | ^
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp:4:1: error: extended character ┬á is not valid in an identifier
+foo.cpp: In function 'void foo(const char*)':
+foo.cpp:4:1: error: '\U000000a0\U000000a0\U000000a0\U000000a0\U000000a0\U000000a0\U000000a0\U000000a0std' has not been declared
+    4 | ┬á┬á┬á┬á┬á┬á┬á┬ástd::cout << str << std::endl;
+      | ^~~~~~~~~~~
+
+A hibát valahogy sikerült kijavítanom az foo.cpp fájl újbóli létrehozásával.
+
+$ ls
+foo.cpp  foo.o  gy.cpp  main.cpp  main2.cpp  main2.o
+
+
+7.  g++ main2.o foo.o -o main2 parancs hatására létrejött a main2.exe.
+A program sikeresen lefut:
+
+$ ./main2
+Hello
+
+
+8. -
+
+
+9. g++ -E main3.cpp parancs eredménye:
+
+$ g++ -E main3.cpp
+# 0 "main3.cpp"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "main3.cpp"
+main3.cpp:2:10: fatal error: bar.h: No such file or directory
+    2 | #include "bar.h"
+      |          ^~~~~~~
+compilation terminated.
+
+
+10. A problémát az okozhatja, hogy az a változónak nem adtunk értéket, mégis megpróbáljuk kiírni.
+
+g++ -Wall -o warnings warnings.cpp:
+
+warnings.cpp: In function 'int main()':
+warnings.cpp:4:22: warning: 'a' is used uninitialized [-Wuninitialized]
+    4 |         std::cout << a << std::endl;
+      |                      ^
+warnings.cpp:3:13: note: 'a' was declared here
+    3 |         int a;
+      |             ^
+
+
+11. -g:  hibakeresési információkat ad a fordított programhoz, a bináris mérete nagyobb lesz, de segít visszakövetni a forráskódot futás közben
+    -Werror: minden figyelmeztetést hibává alakít. ha a kód figyelmeztetést dob, a fordítás megáll, és nem készül el a végrehajtható fájl
+    -O0: ez letiltja az optimalizálásokat, így a fordító nem módosítja a kód szerkezetét a teljesítmény javítása érdekében
+
+
+12. - 
+
+
+13. A 98-as, illetve a 03-as verzióra az alábbi hibát kaptam:
+
+$ g++ -std=c++98 -o auto auto.cpp
+auto.cpp: In function 'int main()':
+auto.cpp:4:14: error: 'i' does not name a type
+    4 |         auto i = 10 + 2;
+      |              ^
+auto.cpp:5:22: error: 'i' was not declared in this scope
+    5 |         std::cout << i << std::endl;
+      |                      ^
+
+A 11-es, illetve a 14-es verzióval hiba nélkül lefutott, tehát az auto típus a 11-es verziótól fogva van elfogadva.
