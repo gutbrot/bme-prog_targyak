@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="64875330-c071-4c16-9697-a9555ed1ba47" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/junit-platform-console-standalone-1.10.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/test/AbilityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/HomeWorkPorject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/HomeWorkPorject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/Ability.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/DependencyGraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/GameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/entities/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/entities/Character.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../JUnitTest\exportToHTML" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="34eAuxKiwenJkegA55xAxAEpLjG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CalculatorTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/porg/prog3_2025/lab/lab06/JUnitTest",
+    "onboarding.tips.debug.path": "D:/prog3/prog3laborok/lab06/JUnitTest/src/Main.java",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JUnitTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="junittest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="junittest" />
+      <option name="MAIN_CLASS_NAME" value="junittest.CalculatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CalculatorTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64875330-c071-4c16-9697-a9555ed1ba47" name="Changes" comment="" />
+      <created>1761563893596</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761563893596</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/JUnitTest$CalculatorTest.ic" NAME="CalculatorTest Coverage Results" MODIFIED="1761566496324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>junittest.*</FILTER>
+    </SUITE>
+  </component>
+</project>

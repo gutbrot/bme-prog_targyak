@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6617bcfc-69e8-4b8f-aaf7-cb67600b2165" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/junit-platform-console-standalone-1.10.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/test/AbilityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/HomeWorkPorject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/HomeWorkPorject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/Ability.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/DependencyGraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/GameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/entities/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../hw/HomeWorkPorject/src/entities/Character.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="34eIFOjUFqbkbE7jJLScfqaZbHo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.BankTest Coverage.executor": "Debug",
+    "JUnit.BankTest.executor": "Run",
+    "JUnit.BankTestFixture.executor": "Coverage",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/porg/prog3_2025/lab/lab06/JUnitLab",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "coverage"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\porg\prog3_2025\lab\lab06\JUnitLab" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.BankTest Coverage">
+    <configuration name="BankTest Coverage" type="JUnit" factoryName="JUnit">
+      <module name="JUnitLab" />
+      <option name="PACKAGE_NAME" value="junitlab.bank" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BankTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JUnitLab" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="junitlab.bank.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="junitlab.bank" />
+      <option name="MAIN_CLASS_NAME" value="junitlab.bank.BankTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BankTestFixture" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JUnitLab" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="junitlab.bank.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="junitlab.bank" />
+      <option name="MAIN_CLASS_NAME" value="junitlab.bank.BankTestFixture" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.BankTest Coverage" />
+      <item itemvalue="JUnit.BankTest" />
+      <item itemvalue="JUnit.BankTestFixture" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BankTestFixture" />
+        <item itemvalue="JUnit.BankTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6617bcfc-69e8-4b8f-aaf7-cb67600b2165" name="Changes" comment="" />
+      <created>1761567507033</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761567507033</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/JUnitLab$BankTestFixture.ic" NAME="BankTestFixture Coverage Results" MODIFIED="1761570972335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>junitlab.bank.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/JUnitLab$BankTest_Coverage.ic" NAME="BankTest Coverage Coverage Results" MODIFIED="1761571483571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>

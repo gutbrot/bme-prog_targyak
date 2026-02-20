@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Entity
+class Monster
+class Character
+Entity <|-- Character
+Entity <|-- Monster
+
+class Abilities
+
+class XmlMapLoader
+World o-- XmlMapLoader
+Tile o-- XmlMapLoader
+Entity o-- XmlMapLoader
+Abilities o-- XmlMapLoader
+
+class World
+class Tile
+World *-- Tile
+
+@enduml
